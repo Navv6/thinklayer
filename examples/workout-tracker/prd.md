@@ -1,18 +1,18 @@
 # PRD — workout-tracker (v1)
 
-## Problem
-Existing workout apps have too many features. Logging should take seconds.
+## 문제
+기존 운동 앱은 기능이 너무 많습니다. 기록은 몇 초 안에 끝나야 합니다.
 
-## Users
-The author and a few friends from one gym.
+## 사용자
+작성자 본인과 같은 헬스장에 다니는 친구 몇 명.
 
-## MVP scope
-- In: log exercise, sets, weight; view own history
-- Out (not yet): login, sync between devices, friend feed
+## MVP 범위
+- 포함: 운동 종목, 세트, 무게 기록; 내 기록 보기
+- 제외 (아직): 로그인, 기기 간 동기화, 친구 피드
 
-## Success metric
-TBD — to be set after the 1-week shared-sheet test.
+## 성공 지표
+미정 — 1주일 공유 시트 테스트 후 정합니다.
 
-## Open assumptions
-- Friends will keep logging for more than a week
-- Sharing is wanted enough to justify accounts
+## 남은 가정
+- 친구들이 1주일 넘게 꾸준히 기록할 것이다
+- 공유 기능이 계정을 만들 만큼 충분히 필요하다

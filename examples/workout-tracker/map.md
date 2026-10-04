@@ -2,9 +2,9 @@
 
 ```mermaid
 graph LR
-  log[Workout log] -- depends_on --> storage[(Storage)]
-  share[Friend sharing?] -- depends_on --> login{Login?}
-  login -- introduces --> pii[Personal data / account recovery]
+  log[운동 기록] -- depends_on --> storage[(저장소)]
+  share[친구 공유?] -- depends_on --> login{로그인?}
+  login -- introduces --> pii[개인정보 / 계정 복구]
 ```
 
-Nodes ending in `?` are not decided yet.
+`?`로 끝나는 노드는 아직 결정되지 않은 항목입니다.

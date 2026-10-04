@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/<owner>/thinklayer/schemas/project-state.schema.json",
+  "$id": "https://github.com/Navv6/thinklayer/schemas/project-state.schema.json",
   "title": "ThinkLayer Project State",
   "type": "object",
   "required": ["project", "pack", "slots", "nodes", "relations", "gaps", "next_action"],

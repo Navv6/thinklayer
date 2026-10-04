@@ -1,47 +1,47 @@
 id: vibe-coding
 version: 0.1.0
 title: Vibe Coding Pack
-purpose: Structure an app idea before handing it to an AI coding agent.
+purpose: AI 코딩 에이전트에 넘기기 전에 앱 아이디어를 구조화합니다.
 
 slots:
   - id: idea
     required: true
-    ask: What do you want to build, in one sentence?
+    ask: 무엇을 만들고 싶은지 한 문장으로 말해주세요.
   - id: target_user
     required: true
-    ask: Who will use the first version? Be as specific as you can.
+    ask: 첫 버전은 누가 쓰나요? 최대한 구체적으로 말해주세요.
   - id: problem
     required: true
-    ask: How do they handle this today, and what bothers them about it?
+    ask: 그 사람들은 지금 이 일을 어떻게 하고 있고, 무엇이 불편한가요?
   - id: core_value
     required: true
-    ask: What changes for the user if this works?
+    ask: 이게 잘 되면 사용자에게 무엇이 달라지나요?
   - id: mvp_features
     required: true
-    ask: Which single feature must exist on day one?
+    ask: 첫날 반드시 있어야 하는 기능 하나는 무엇인가요?
   - id: data
     required: false
-    ask: What needs to be saved, and for how long?
+    ask: 무엇을 저장해야 하고, 얼마나 오래 보관해야 하나요?
   - id: auth
     required: false
-    ask: Does the first version really need login? Why?
+    ask: 첫 버전에 로그인이 정말 필요한가요? 왜 그런가요?
   - id: constraints
     required: false
-    ask: Any limits on time, budget, skills or platform?
+    ask: 시간, 예산, 기술, 플랫폼에 제약이 있나요?
   - id: success_metric
     required: true
-    ask: How will you know v1 worked?
+    ask: v1이 성공했다는 걸 어떻게 알 수 있을까요?
 
 gap_rules:
   - when: "auth is MISSING or UNKNOWN and any feature involves sharing between users"
     type: CONFLICT
-    statement: "Sharing between users usually requires accounts; decide before building."
+    statement: "사용자 간 공유에는 보통 계정이 필요합니다. 만들기 전에 결정하세요."
   - when: "success_metric is MISSING"
     type: MISSING
-    statement: "No way to tell if v1 worked."
+    statement: "v1이 성공했는지 판단할 방법이 없습니다."
   - when: "target_user is PARTIAL and mvp_features has more than 3 items"
     type: RISK
-    statement: "Scope is growing faster than the user definition."
+    statement: "사용자 정의보다 기능 범위가 더 빨리 커지고 있습니다."
 
 exports:
   - prd.md

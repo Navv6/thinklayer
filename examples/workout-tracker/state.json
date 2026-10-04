@@ -2,20 +2,20 @@
   "project": "workout-tracker",
   "pack": "vibe-coding@0.1.0",
   "slots": {
-    "idea": { "status": "DEFINED", "value": "A simple app to log sets and weights", "user_confirmed": true },
-    "target_user": { "status": "PARTIAL", "value": "Me and a few friends from my gym" },
-    "problem": { "status": "DEFINED", "value": "Existing apps have too many features" },
-    "core_value": { "status": "PARTIAL", "value": "Logging takes seconds, not minutes" },
-    "mvp_features": { "status": "PARTIAL", "value": "Log sets and weights; see friends' logs" },
+    "idea": { "status": "DEFINED", "value": "세트와 무게를 기록하는 간단한 앱", "user_confirmed": true },
+    "target_user": { "status": "PARTIAL", "value": "나와 같은 헬스장 친구 몇 명" },
+    "problem": { "status": "DEFINED", "value": "기존 앱은 기능이 너무 많다" },
+    "core_value": { "status": "PARTIAL", "value": "기록이 몇 분이 아니라 몇 초 만에 끝난다" },
+    "mvp_features": { "status": "PARTIAL", "value": "세트와 무게 기록; 친구 기록 보기" },
     "auth": { "status": "UNKNOWN" },
     "success_metric": { "status": "MISSING" }
   },
   "nodes": [
-    { "id": "log", "type": "feature", "label": "Workout log", "state": "KNOWN" },
-    { "id": "share", "type": "feature", "label": "Friend sharing", "state": "ASSUMPTION" },
-    { "id": "storage", "type": "data", "label": "Storage", "state": "DEPENDENCY" },
-    { "id": "login", "type": "decision", "label": "Login", "state": "UNKNOWN" },
-    { "id": "pii", "type": "risk", "label": "Personal data, account recovery", "state": "RISK" }
+    { "id": "log", "type": "feature", "label": "운동 기록", "state": "KNOWN" },
+    { "id": "share", "type": "feature", "label": "친구 공유", "state": "ASSUMPTION" },
+    { "id": "storage", "type": "data", "label": "저장소", "state": "DEPENDENCY" },
+    { "id": "login", "type": "decision", "label": "로그인", "state": "UNKNOWN" },
+    { "id": "pii", "type": "risk", "label": "개인정보, 계정 복구", "state": "RISK" }
   ],
   "relations": [
     { "from": "log", "rel": "depends_on", "to": "storage" },
@@ -23,13 +23,13 @@
     { "from": "login", "rel": "introduces", "to": "pii" }
   ],
   "gaps": [
-    { "type": "CONFLICT", "statement": "'Only sets and weights' vs friend sharing, which needs login", "source": "answers to Q2 and Q3" },
-    { "type": "ASSUMPTION", "statement": "Friends will keep logging", "source": "node: share" },
-    { "type": "MISSING", "statement": "No success metric for v1", "source": "slot: success_metric" }
+    { "type": "CONFLICT", "statement": "'세트와 무게만' vs 로그인이 필요한 친구 공유", "source": "Q2, Q3 답변" },
+    { "type": "ASSUMPTION", "statement": "친구들이 꾸준히 기록할 것이다", "source": "node: share" },
+    { "type": "MISSING", "statement": "v1 성공 지표가 없음", "source": "slot: success_metric" }
   ],
   "next_action": {
-    "next": "Ask 3 gym friends to log in a shared sheet for 1 week",
-    "why": "Biggest unknown: will they keep logging?",
-    "not_yet": "Login, sync, social feed"
+    "next": "헬스장 친구 3명에게 1주일 동안 공유 시트에 기록해 달라고 부탁하기",
+    "why": "가장 큰 미지수: 친구들이 꾸준히 기록할까?",
+    "not_yet": "로그인, 동기화, 소셜 피드"
   }
 }
