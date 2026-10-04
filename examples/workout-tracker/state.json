@@ -1,0 +1,35 @@
+{
+  "project": "workout-tracker",
+  "pack": "vibe-coding@0.1.0",
+  "slots": {
+    "idea": { "status": "DEFINED", "value": "A simple app to log sets and weights", "user_confirmed": true },
+    "target_user": { "status": "PARTIAL", "value": "Me and a few friends from my gym" },
+    "problem": { "status": "DEFINED", "value": "Existing apps have too many features" },
+    "core_value": { "status": "PARTIAL", "value": "Logging takes seconds, not minutes" },
+    "mvp_features": { "status": "PARTIAL", "value": "Log sets and weights; see friends' logs" },
+    "auth": { "status": "UNKNOWN" },
+    "success_metric": { "status": "MISSING" }
+  },
+  "nodes": [
+    { "id": "log", "type": "feature", "label": "Workout log", "state": "KNOWN" },
+    { "id": "share", "type": "feature", "label": "Friend sharing", "state": "ASSUMPTION" },
+    { "id": "storage", "type": "data", "label": "Storage", "state": "DEPENDENCY" },
+    { "id": "login", "type": "decision", "label": "Login", "state": "UNKNOWN" },
+    { "id": "pii", "type": "risk", "label": "Personal data, account recovery", "state": "RISK" }
+  ],
+  "relations": [
+    { "from": "log", "rel": "depends_on", "to": "storage" },
+    { "from": "share", "rel": "depends_on", "to": "login" },
+    { "from": "login", "rel": "introduces", "to": "pii" }
+  ],
+  "gaps": [
+    { "type": "CONFLICT", "statement": "'Only sets and weights' vs friend sharing, which needs login", "source": "answers to Q2 and Q3" },
+    { "type": "ASSUMPTION", "statement": "Friends will keep logging", "source": "node: share" },
+    { "type": "MISSING", "statement": "No success metric for v1", "source": "slot: success_metric" }
+  ],
+  "next_action": {
+    "next": "Ask 3 gym friends to log in a shared sheet for 1 week",
+    "why": "Biggest unknown: will they keep logging?",
+    "not_yet": "Login, sync, social feed"
+  }
+}

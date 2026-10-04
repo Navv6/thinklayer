@@ -1,0 +1,48 @@
+id: vibe-coding
+version: 0.1.0
+title: Vibe Coding Pack
+purpose: Structure an app idea before handing it to an AI coding agent.
+
+slots:
+  - id: idea
+    required: true
+    ask: What do you want to build, in one sentence?
+  - id: target_user
+    required: true
+    ask: Who will use the first version? Be as specific as you can.
+  - id: problem
+    required: true
+    ask: How do they handle this today, and what bothers them about it?
+  - id: core_value
+    required: true
+    ask: What changes for the user if this works?
+  - id: mvp_features
+    required: true
+    ask: Which single feature must exist on day one?
+  - id: data
+    required: false
+    ask: What needs to be saved, and for how long?
+  - id: auth
+    required: false
+    ask: Does the first version really need login? Why?
+  - id: constraints
+    required: false
+    ask: Any limits on time, budget, skills or platform?
+  - id: success_metric
+    required: true
+    ask: How will you know v1 worked?
+
+gap_rules:
+  - when: "auth is MISSING or UNKNOWN and any feature involves sharing between users"
+    type: CONFLICT
+    statement: "Sharing between users usually requires accounts; decide before building."
+  - when: "success_metric is MISSING"
+    type: MISSING
+    statement: "No way to tell if v1 worked."
+  - when: "target_user is PARTIAL and mvp_features has more than 3 items"
+    type: RISK
+    statement: "Scope is growing faster than the user definition."
+
+exports:
+  - prd.md
+  - agent-instructions.md

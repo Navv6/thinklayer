@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/<owner>/thinklayer/schemas/project-state.schema.json",
+  "title": "ThinkLayer Project State",
+  "type": "object",
+  "required": ["project", "pack", "slots", "nodes", "relations", "gaps", "next_action"],
+  "properties": {
+    "project": { "type": "string" },
+    "pack": { "type": "string" },
+    "slots": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["status"],
+        "properties": {
+          "status": { "enum": ["DEFINED", "PARTIAL", "MISSING", "UNKNOWN"] },
+          "value": { "type": "string" },
+          "user_confirmed": { "type": "boolean" }
+        }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "label", "state"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "enum": ["problem", "user", "feature", "data", "dependency", "assumption", "risk", "decision"] },
+          "label": { "type": "string" },
+          "state": { "enum": ["KNOWN", "ASSUMPTION", "UNKNOWN", "CONFLICT", "RISK", "DEPENDENCY"] },
+          "user_confirmed": { "type": "boolean" }
+        }
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["from", "rel", "to"],
+        "properties": {
+          "from": { "type": "string" },
+          "rel": { "enum": ["depends_on", "introduces", "blocks", "resolves", "conflicts_with"] },
+          "to": { "type": "string" }
+        }
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["type", "statement", "source"],
+        "properties": {
+          "type": { "enum": ["UNKNOWN", "ASSUMPTION", "CONFLICT", "DEPENDENCY", "RISK", "MISSING"] },
+          "statement": { "type": "string" },
+          "source": { "type": "string" }
+        }
+      }
+    },
+    "next_action": {
+      "type": "object",
+      "required": ["next", "why"],
+      "properties": {
+        "next": { "type": "string" },
+        "why": { "type": "string" },
+        "not_yet": { "type": "string" }
+      }
+    }
+  }
+}
